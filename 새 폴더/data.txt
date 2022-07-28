@@ -1,0 +1,551 @@
+drop table professor ;
+
+create table professor (
+ profno number(4) primary key,
+ name  varchar2(10 char) not null, 
+ id  varchar2(15 char) not null,
+ position varchar2 (10 char) not null,
+ pay number (3) not null,
+ hiredate  date not null,
+ bonus number(4) ,
+ deptno  number(3),
+ email  varchar2(50 char),
+ hpage  varchar2(50 char)) tablespace users;
+
+insert into professor
+values(1001,'조인형','captain','정교수',550,to_date('1980-06-23','YYYY-MM-DD'),100,101,'captain@abc.net','http://www.abc.net');
+
+insert into professor
+values(1002,'박승곤','sweety','조교수',380,to_date('1987-01-30','YYYY-MM-DD'),60,101,'sweety@abc.net','http://www.abc.net');
+
+insert into professor
+values (1003,'송도권','powerman','전임강사',270,to_date('1998-03-22','YYYY-MM-DD'),null,101,'pman@power.com','http://www.power.com');
+
+insert into professor
+values (2001,'양선희','lamb1','전임강사',250,to_date('2001-09-01','YYYY-MM-DD'),null,102,'lamb1@hamail.net',null);
+
+insert into professor
+values (2002,'김영조','number1','조교수',350,to_date('1985-11-30','YYYY-MM-DD'),80,102,'number1@naver.com','http://num1.naver.com');
+
+insert into professor
+values (2003,'주승재','bluedragon','정교수',490,to_date('1982-04-29','YYYY-MM-DD'),90,102,'bdragon@naver.com',null);
+
+insert into professor
+values (3001,'김도형','angel1004','정교수',530,to_date('1981-10-23','YYYY-MM-DD'),110,103,'angel1004@hanmir.com',null);
+
+insert into professor
+values (3002,'나한열','naone10','조교수',330,to_date('1997-07-01','YYYY-MM-DD'),50,103,'naone10@empal.com',null);
+
+insert into professor
+values (3003,'김현정','only-u','전임강사',290,to_date('2002-02-24','YYYY-MM-DD'),null,103,'only_u@abc.com',null);
+
+insert into professor
+values (4001,'심슨','simson','정교수',570,to_date('1981-10-23','YYYY-MM-DD'),130,201,'chebin@daum.net',null);
+
+insert into professor
+values (4002,'최슬기','gogogo','조교수',330,to_date('2009-08-30','YYYY-MM-DD'),null,201,'gogogo@def.com',null);
+
+insert into professor
+values (4003,'박원범','mypride','조교수',310,to_date('1999-12-01','YYYY-MM-DD'),50,202,'mypride@hanmail.net',null);
+
+insert into professor
+values (4004,'차범철','ironman','전임강사',260,to_date('2009-01-28','YYYY-MM-DD'),null,202,'ironman@naver.com',null);
+
+insert into professor
+values (4005,'바비','standkang','정교수',500,to_date('1985-09-18','YYYY-MM-DD'),80,203,'standkang@naver.com',null);
+
+insert into professor 
+values (4006,'전민','napeople','전임강사',220,to_date('2010-06-28','YYYY-MM-DD'),null,301,'napeople@jass.com',null);
+
+insert into professor
+values (4007,'허은','silver-her','조교수',290,to_date('2001-05-23','YYYY-MM-DD'),30,301,'silver-her@daum.net',null);
+
+commit;
+
+drop table department purge;
+create table department
+( deptno number(3) primary key ,
+  dname varchar2(20 char) not null,
+  part number(3),
+  build  varchar2(14 char))tablespace users;
+
+insert into department 
+values (101,'컴퓨터공학과',100,'정보관');
+
+insert into department
+values (102,'멀티미디어공학과',100,'멀티미디어관');
+
+insert into department
+values (103,'소프트웨어공학과',100,'소프트웨어관');
+
+insert into department
+values (201,'전자공학과',200,'전자제어관');
+
+insert into department
+values (202,'기계공학과',200,'기계실험관');
+
+insert into department
+values (203,'화학공학과',200,'화학실습관');
+
+insert into department
+values (301,'문헌정보학과',300,'인문관');
+
+insert into department
+values (100,'컴퓨터정보학부',10,null);
+
+insert into department
+values (200,'메카트로닉스학부',10,null);
+
+insert into department
+values (300,'인문사회학부',20,null);
+
+insert into department
+values (10,'공과대학',null,null);
+
+insert into department
+values (20,'인문대학',null,null);
+
+commit;
+ 
+
+drop table student purge;
+
+create table student
+( studno number(4) primary key,
+  name   varchar2(10 char) not null,
+  id varchar2(20 char) not null unique,
+  grade number check(grade between 1 and 6),
+  jumin char(13) not null,
+  birthday  date,
+  tel varchar2(15 char),
+  height  number(4),
+  weight  number(3),
+  deptno1 number(3),
+  deptno2 number(3),
+  profno  number(4)) tablespace users;
+
+insert into student values (
+9411,'서진수','75true',4,'7510231901810',to_date('1975-10-23','YYYY-MM-DD'),'055)381-2158',180,72,101,201,1001);
+
+insert into student values (
+9412,'서재수','pooh94',4,'7502241128467',to_date('1975-02-24','YYYY-MM-DD'),'051)426-1700',172,64,102,null,2001);
+
+insert into student values (
+9413,'이미경','angel000',4,'7506152123648',to_date('1975-06-15','YYYY-MM-DD'),'053)266-8947',168,52,103,203,3002);
+
+insert into student values (
+9414,'김재수','gunmandu',4,'7512251063421',to_date('1975-12-25','YYYY-MM-DD'),'02)6255-9875',177,83,201,null,4001);
+
+insert into student values (
+9415,'박동호','pincle1',4,'7503031639826',to_date('1975-03-03','YYYY-MM-DD'),'031)740-6388',182,70,202,null,4003);
+
+insert into student values (
+9511,'김신영','bingo',3,'7601232186327',to_date('1976-01-23','YYYY-MM-DD'),'055)333-6328',164,48,101,null,1002);
+
+insert into student values (
+9512,'신은경','jjang1',3,'7604122298371',to_date('1976-04-12','YYYY-MM-DD'),'051)418-9627',161,42,102,201,2002);
+
+insert into student values (
+9513,'오나라','nara5',3,'7609112118379',to_date('1976-09-11','YYYY-MM-DD'),'051)724-9618',177,55,202,null,4003);
+
+insert into student values (
+9514,'구유미','guyume',3,'7601202378641',to_date('1976-01-20','YYYY-MM-DD'),'055)296-3784',160,58,301,101,4007);
+
+insert into student values (
+9515,'임세현','shyun1',3,'7610122196482',to_date('1976-10-12','YYYY-MM-DD'),'02)312-9838',171,54,201,null,4001);
+
+insert into student values (
+9611,'일지매','onejimae',2,'7711291186223',to_date('1977-11-29','YYYY-MM-DD'),'02)6788-4861',182,72,101,null,1002);
+
+insert into student values (
+9612,'김진욱','samjang7',2,'7704021358674',to_date('1977-04-02','YYYY-MM-DD'),'055)488-2998',171,70,102,null,2001);
+
+insert into student values (
+9613,'안광훈','nonnon1',2,'7709131276431',to_date('1977-09-13','YYYY-MM-DD'),'053)736-4981',175,82,201,null,4002);
+
+insert into student values (
+9614,'김문호','munho',2,'7702261196365',to_date('1977-02-26','YYYY-MM-DD'),'02)6175-3945',166,51,201,null,4003);
+
+insert into student values (
+9615,'노정호','star123',2,'7712141254963',to_date('1977-12-14','YYYY-MM-DD'),'051)785-6984',184,62,301,null,4007);
+
+insert into student values (
+9711,'이윤나','prettygirl',1,'7808192157498',to_date('1978-08-19','YYYY-MM-DD'),'055)278-3649',162,48,101,null,null);
+
+insert into student values (
+9712,'안은수','silverwt',1,'7801051776346',to_date('1978-01-05','YYYY-MM-DD'),'02)381-5440',175,63,201,null,null);
+
+insert into student values (
+9713,'인영민','youngmin',1,'7808091786954',to_date('1978-08-09','YYYY-MM-DD'),'031)345-5677',173,69,201,null,null);
+
+insert into student values (
+9714,'김주현','kimjh',1,'7803241981987',to_date('1978-03-24','YYYY-MM-DD'),'055)423-9870',179,81,102,null,null);
+
+insert into student values (
+9715,'허우','wooya2702',1,'7802232116784',to_date('1978-02-23','YYYY-MM-DD'),'02)6122-2345',163,51,103,null,null);
+
+commit;
+
+drop table emp2 cascade constraint ;
+
+CREATE TABLE EMP2 (
+ EMPNO       NUMBER  PRIMARY KEY,
+ NAME        VARCHAR2(10 char) NOT NULL,
+ BIRTHDAY    DATE,
+ DEPTNO      VARCHAR2(06 char) NOT NULL,
+ EMP_TYPE    VARCHAR2(08 char),
+ TEL         VARCHAR2(15 char),
+ HOBBY       VARCHAR2(30 char),
+ PAY         NUMBER,
+ POSITION    VARCHAR2(08 char),
+ PEMPNO      NUMBER
+);
+
+INSERT INTO EMP2 VALUES (19900101,'나사장',TO_DATE('19640125','YYYYMMDD'),'0001','정규직','054)223-0001','음악감상',100000000,'대표이사',null);
+INSERT INTO EMP2 VALUES (19960101,'전부장',TO_DATE('19730322','YYYYMMDD'),'1000','정규직','02)6255-8000','독서',72000000,'부장',19900101);
+INSERT INTO EMP2 VALUES (19970201,'최일도',TO_DATE('19750415','YYYYMMDD'),'1000','정규직','02)6255-8005','운동',50000000,'과장',19960101);
+INSERT INTO EMP2 VALUES (19930331,'백원만',TO_DATE('19760525','YYYYMMDD'),'1001','정규직','02)6255-8010','자전거타기',60000000,'차장',19960101);
+INSERT INTO EMP2 VALUES (19950303,'천만득',TO_DATE('19730615','YYYYMMDD'),'1002','정규직','02)6255-8020','마라톤',56000000,'과장',19960101);
+INSERT INTO EMP2 VALUES (19966102,'일지매',TO_DATE('19720705','YYYYMMDD'),'1003','정규직','052)223-4000','음악감상',75000000,'부장',19900101);
+INSERT INTO EMP2 VALUES (19930402,'유관순',TO_DATE('19720815','YYYYMMDD'),'1004','정규직','042)998-7005','등산',51000000,'과장',19966102);
+INSERT INTO EMP2 VALUES (19960303,'김문호',TO_DATE('19710925','YYYYMMDD'),'1005','정규직','031)564-3340','등산',35000000,'대리',19966102);
+INSERT INTO EMP2 VALUES (19970112,'노정호',TO_DATE('19761105','YYYYMMDD'),'1006','정규직','054)223-4500','수영',68000000,'부장',19900101);
+INSERT INTO EMP2 VALUES (19960212,'이윤나',TO_DATE('19721215','YYYYMMDD'),'1007','정규직','054)223-4600',null,49000000,'과장',19970112);
+INSERT INTO EMP2 VALUES (20000101,'이태백',TO_DATE('19850125','YYYYMMDD'),'1008','계약직','051)123-4567','등산', 30000000,'',19960212);
+INSERT INTO EMP2 VALUES (20000102,'김설악',TO_DATE('19830322','YYYYMMDD'),'1009','계약직','031)234-5678','낚시', 30000000,'',19960212);
+INSERT INTO EMP2 VALUES (20000203,'최오대',TO_DATE('19820415','YYYYMMDD'),'1010','계약직','02)2345-6789','바둑', 30000000,'',19960212);
+INSERT INTO EMP2 VALUES (20000334,'박지리',TO_DATE('19810525','YYYYMMDD'),'1011','계약직','053)456-7890','노래', 30000000,'',19960212);
+INSERT INTO EMP2 VALUES (20000305,'정북악',TO_DATE('19800615','YYYYMMDD'),'1008','수습직','051)567-8901','독서', 22000000,'',19960212);
+INSERT INTO EMP2 VALUES (20006106,'유도봉',TO_DATE('19800705','YYYYMMDD'),'1009','수습직','031)678-9012','술',   22000000,'',19960212);
+INSERT INTO EMP2 VALUES (20000407,'윤주왕',TO_DATE('19800815','YYYYMMDD'),'1010','수습직','02)2789-0123','오락', 22000000,'',19960212);
+INSERT INTO EMP2 VALUES (20000308,'강월악',TO_DATE('19800925','YYYYMMDD'),'1011','인턴직','053)890-1234','골프', 20000000,'',19960212);
+INSERT INTO EMP2 VALUES (20000119,'장금강',TO_DATE('19801105','YYYYMMDD'),'1004','인턴직','042)901-2345','술',   20000000,'',19930402);
+INSERT INTO EMP2 VALUES (20000210,'나한라',TO_DATE('19801215','YYYYMMDD'),'1005','인턴직','031)345-3456','독서', 20000000,'',19960303);
+COMMIT;
+
+drop table dept2 cascade constraint;
+
+CREATE TABLE DEPT2 (
+ DCODE   VARCHAR2(06 char)  PRIMARY KEY,
+ DNAME   VARCHAR2(20 char) NOT NULL,
+ PDEPT VARCHAR2(06 char) ,
+ AREA        VARCHAR2(16 char)
+);
+
+INSERT INTO DEPT2 VALUES ('0001','사장실','','포항본사');
+INSERT INTO DEPT2 VALUES ('1000','경영지원부','0001','서울지사');
+INSERT INTO DEPT2 VALUES ('1001','재무관리팀','1000','서울지사');
+INSERT INTO DEPT2 VALUES ('1002','총무팀','1000','서울지사');
+INSERT INTO DEPT2 VALUES ('1003','기술부','0001','포항본사');
+INSERT INTO DEPT2 VALUES ('1004','H/W지원','1003','대전지사');
+INSERT INTO DEPT2 VALUES ('1005','S/W지원','1003','경기지사');
+INSERT INTO DEPT2 VALUES ('1006','영업부','0001','포항본사');
+INSERT INTO DEPT2 VALUES ('1007','영업기획팀','1006','포항본사');
+INSERT INTO DEPT2 VALUES ('1008','영업1팀','1007','부산지사');
+INSERT INTO DEPT2 VALUES ('1009','영업2팀','1007','경기지사');
+INSERT INTO DEPT2 VALUES ('1010','영업3팀','1007','서울지사');
+INSERT INTO DEPT2 VALUES ('1011','영업4팀','1007','울산지사');
+
+commit;
+
+DROP TABLE cal purge ;
+
+DROP TABLE GIFT purge;
+
+create table gift
+( gno  number ,
+  gname varchar2(15 char) ,
+  g_start  number ,
+  g_end  number );
+
+insert into gift values(1,'참치세트',1,100000);
+insert into gift values(2,'샴푸세트',100001,200000);
+insert into gift values(3,'세차용품세트',200001,300000);
+insert into gift values(4,'주방용품세트',300001,400000);
+insert into gift values(5,'산악용자전거',400001,500000);
+insert into gift values(6,'LCD모니터',500001,600000);
+insert into gift values(7,'노트북',600001,700000);
+insert into gift values(8,'벽걸이TV',700001,800000);
+insert into gift values(9,'드럼세탁기',800001,900000);
+insert into gift values(10,'양쪽문냉장고',900001,1000000);
+commit ;
+
+DROP TABLE gogak purge;
+
+create table gogak
+(gno  number(8) ,
+ gname varchar2(12 char) ,
+ jumin char(13) ,
+ point number) ;
+
+insert into gogak values (20010001,'서진수','7510231369820',980000);
+insert into gogak values (20010002,'서재수','7502241128467',73000);
+insert into gogak values (20010003,'이미경','7506152123648',320000);
+insert into gogak values (20010004,'김재수','7512251063421',65000);
+insert into gogak values (20010005,'박동호','7503031639826',180000);
+insert into gogak values (20010006,'김신영','7601232186327',153000);
+insert into gogak values (20010007,'신은경','7604212298371',273000);
+insert into gogak values (20010008,'오나라','7609112118379',315000);
+insert into gogak values (20010009,'김설희','7601202378641',542000);
+insert into gogak values (20010010,'임세현','7610122196482',265000);
+insert into gogak values (20010011,'최순규','7711291186223',110000);
+insert into gogak values (20010012,'정현영','7704021358674',99000);
+insert into gogak values (20010013,'안광훈','7709131276431',470000);
+insert into gogak values (20010014,'모병환','7702261196365',298000);
+insert into gogak values (20010015,'노정호','7712141254963',420000);
+insert into gogak values (20010016,'이윤나','7808192157498',598000);
+insert into gogak values (20010017,'안은수','7801051776346',625000);
+insert into gogak values (20010018,'인영민','7808091786954',670000);
+insert into gogak values (20010019,'김지영','7803242114563',770000);
+insert into gogak values (20010020,'허우','7802232116784',730000);
+commit ;
+
+-- 집계함수 연습을 위한 테이블
+
+drop table product purge ;
+
+CREATE TABLE product
+( p_code  number(3) primary key,
+  p_name varchar2(20 char) not null ,
+  p_price  number) ;
+
+
+insert into product values (100,'새우짱',800);
+insert into product values (101,'감자짱',900);
+insert into product values (102,'맛큰산',1000);
+insert into product values (103,'에이서',900);
+insert into product values (104,'맛짱구',800);
+insert into product values(105,'샤보레',1500);
+commit;
+
+drop table panmae purge ;
+
+create table panmae
+( p_date varchar2(8 char) not null,
+  p_code number not null,
+  p_qty  number ,
+  p_total number ,
+  p_store varchar2(5 char) );
+
+
+insert into panmae values ('20110101',100,3,2400,'1000');
+insert into panmae values ('20110101',101,5,4500,'1001');
+insert into panmae values ('20110101',102,2,2000,'1003');
+insert into panmae values ('20110101',103,6,5400,'1004');
+insert into panmae values ('20110102',102,2,2000,'1000');
+insert into panmae values ('20110102',103,5,4500,'1002');
+insert into panmae values ('20110102',104,3,2400,'1002');
+insert into panmae values ('20110102',105,2,3000,'1000');
+insert into panmae values ('20110103',100,10,8000,'1004');
+insert into panmae values ('20110103',100,2,1600,'1000');
+insert into panmae values ('20110103',100,3,2400,'1001');
+insert into panmae values ('20110103',101,4,3600,'1003');
+insert into panmae values ('20110104',100,2,1600,'1002');
+insert into panmae values ('20110104',100,4,3200,'1003');
+insert into panmae values ('20110104',100,5,4000,'1004');
+insert into panmae values ('20110104',101,3,2700,'1001');
+insert into panmae values ('20110104',101,4,3600,'1002');
+insert into panmae values ('20110104',101,3,2700,'1003');
+insert into panmae values ('20110104',102,4,4000,'1001');
+insert into panmae values ('20110104',102,2,2000,'1002');
+insert into panmae values ('20110104',103,2,1800,'1003');
+
+
+commit;
+
+CREATE TABLE insa(
+        num NUMBER(5) NOT NULL CONSTRAINT pk_insa_num PRIMARY KEY
+       ,name VARCHAR2(20) NOT NULL
+       ,ssn  VARCHAR2(14) NOT NULL
+       ,ibsaDate DATE     NOT NULL
+       ,city  VARCHAR2(10)
+       ,tel   VARCHAR2(15)
+       ,buseo VARCHAR2(15) NOT NULL
+       ,jikwi VARCHAR2(15) NOT NULL
+       ,basicPay NUMBER(10) NOT NULL
+       ,sudang NUMBER(10) NOT NULL
+);
+
+-- 데이터 추가
+INSERT INTO insa (num, name, ssn, ibsaDate, city, tel, buseo, jikwi, basicPay, sudang) VALUES
+  (1001, '홍길동', '771212-1022432', '1998-10-11', '서울', '011-2356-4528', '기획부', 
+   '부장', 2610000, 200000);
+INSERT INTO insa (num, name, ssn, ibsaDate, city, tel, buseo, jikwi, basicPay, sudang) VALUES
+  (1002, '이순신', '801007-1544236', '2000-11-29', '경기', '010-4758-6532', '총무부', 
+   '사원', 1320000, 200000);
+INSERT INTO insa (num, name, ssn, ibsaDate, city, tel, buseo, jikwi, basicPay, sudang) VALUES
+  (1003, '이순애', '770922-2312547', '1999-02-25', '인천', '010-4231-1236', '개발부', 
+   '부장', 2550000, 160000);
+INSERT INTO insa (num, name, ssn, ibsaDate, city, tel, buseo, jikwi, basicPay, sudang) VALUES
+  (1004, '김정훈', '790304-1788896', '2000-10-01', '전북', '019-5236-4221', '영업부', 
+   '대리', 1954200, 170000);
+INSERT INTO insa (num, name, ssn, ibsaDate, city, tel, buseo, jikwi, basicPay, sudang) VALUES
+  (1005, '한석봉', '811112-1566789', '2004-08-13', '서울', '018-5211-3542', '총무부', 
+   '사원', 1420000, 160000);
+INSERT INTO insa (num, name, ssn, ibsaDate, city, tel, buseo, jikwi, basicPay, sudang) VALUES
+  (1006, '이기자', '780505-2978541', '2002-02-11', '인천', '010-3214-5357', '개발부', 
+   '과장', 2265000, 150000);
+INSERT INTO insa (num, name, ssn, ibsaDate, city, tel, buseo, jikwi, basicPay, sudang) VALUES
+  (1007, '장인철', '780506-1625148', '1998-03-16', '제주', '011-2345-2525', '개발부', 
+   '대리', 1250000, 150000);
+INSERT INTO insa (num, name, ssn, ibsaDate, city, tel, buseo, jikwi, basicPay, sudang) VALUES
+  (1008, '김영년', '821011-2362514', '2002-04-30', '서울', '016-2222-4444', '홍보부',    
+'사원', 950000 , 145000);
+INSERT INTO insa (num, name, ssn, ibsaDate, city, tel, buseo, jikwi, basicPay, sudang) VALUES
+  (1009, '나윤균', '810810-1552147', '2003-10-10', '경기', '019-1111-2222', '인사부', 
+   '사원', 840000 , 220400);
+INSERT INTO insa (num, name, ssn, ibsaDate, city, tel, buseo, jikwi, basicPay, sudang) VALUES
+  (1010, '김종서', '751010-1122233', '1997-08-08', '부산', '011-3214-5555', '영업부', 
+   '부장', 2540000, 130000);
+INSERT INTO insa (num, name, ssn, ibsaDate, city, tel, buseo, jikwi, basicPay, sudang) VALUES
+  (1011, '유관순', '801010-2987897', '2000-07-07', '서울', '010-8888-4422', '영업부', 
+   '사원', 1020000, 140000);
+INSERT INTO insa (num, name, ssn, ibsaDate, city, tel, buseo, jikwi, basicPay, sudang) VALUES
+  (1012, '정한국', '760909-1333333', '1999-10-16', '강원', '018-2222-4242', '홍보부', 
+   '사원', 880000 , 114000);
+INSERT INTO insa (num, name, ssn, ibsaDate, city, tel, buseo, jikwi, basicPay, sudang) VALUES
+  (1013, '조미숙', '790102-2777777', '1998-06-07', '경기', '019-6666-4444', '홍보부', 
+   '대리', 1601000, 103000);
+INSERT INTO insa (num, name, ssn, ibsaDate, city, tel, buseo, jikwi, basicPay, sudang) VALUES
+  (1014, '황진이', '810707-2574812', '2002-02-15', '인천', '010-3214-5467', '개발부', 
+   '사원', 1100000, 130000);
+INSERT INTO insa (num, name, ssn, ibsaDate, city, tel, buseo, jikwi, basicPay, sudang) VALUES
+  (1015, '이현숙', '800606-2954687', '1999-07-26', '경기', '016-2548-3365', '총무부', 
+   '사원', 1050000, 104000);
+INSERT INTO insa (num, name, ssn, ibsaDate, city, tel, buseo, jikwi, basicPay, sudang) VALUES
+  (1016, '이상헌', '781010-1666678', '2001-11-29', '경기', '010-4526-1234', '개발부', 
+   '과장', 2350000, 150000);
+INSERT INTO insa (num, name, ssn, ibsaDate, city, tel, buseo, jikwi, basicPay, sudang) VALUES
+  (1017, '엄용수', '820507-1452365', '2000-08-28', '인천', '010-3254-2542', '개발부', 
+   '사원', 950000 , 210000);
+INSERT INTO insa (num, name, ssn, ibsaDate, city, tel, buseo, jikwi, basicPay, sudang) VALUES
+  (1018, '이성길', '801028-1849534', '2004-08-08', '전북', '018-1333-3333', '개발부', 
+   '사원', 880000 , 123000);
+INSERT INTO insa (num, name, ssn, ibsaDate, city, tel, buseo, jikwi, basicPay, sudang) VALUES
+  (1019, '박문수', '780710-1985632', '1999-12-10', '서울', '017-4747-4848', '인사부', 
+   '과장', 2300000, 165000);
+INSERT INTO insa (num, name, ssn, ibsaDate, city, tel, buseo, jikwi, basicPay, sudang) VALUES
+  (1020, '유영희', '800304-2741258', '2003-10-10', '전남', '011-9595-8585', '자재부', 
+   '사원', 880000 , 140000);
+INSERT INTO insa (num, name, ssn, ibsaDate, city, tel, buseo, jikwi, basicPay, sudang) VALUES
+  (1021, '홍길남', '801010-1111111', '2001-09-07', '경기', '011-9999-7575', '개발부', 
+   '사원', 875000 , 120000);
+INSERT INTO insa (num, name, ssn, ibsaDate, city, tel, buseo, jikwi, basicPay, sudang) VALUES
+  (1022, '이영숙', '800501-2312456', '2003-02-25', '전남', '017-5214-5282', '기획부', 
+   '대리', 1960000, 180000);
+INSERT INTO insa (num, name, ssn, ibsaDate, city, tel, buseo, jikwi, basicPay, sudang) VALUES
+  (1023, '김인수', '731211-1214576', '1995-02-23', '서울', NULL           , '영업부', 
+   '부장', 2500000, 170000);
+INSERT INTO insa (num, name, ssn, ibsaDate, city, tel, buseo, jikwi, basicPay, sudang) VALUES
+  (1024, '김말자', '830225-2633334', '1999-08-28', '서울', '011-5248-7789', '기획부', 
+   '대리', 1900000, 170000);
+INSERT INTO insa (num, name, ssn, ibsaDate, city, tel, buseo, jikwi, basicPay, sudang) VALUES
+  (1025, '우재옥', '801103-1654442', '2000-10-01', '서울', '010-4563-2587', '영업부', 
+   '사원', 1100000, 160000);
+INSERT INTO insa (num, name, ssn, ibsaDate, city, tel, buseo, jikwi, basicPay, sudang) VALUES
+  (1026, '김숙남', '810907-2015457', '2002-08-28', '경기', '010-2112-5225', '영업부', 
+   '사원', 1050000, 150000);
+INSERT INTO insa (num, name, ssn, ibsaDate, city, tel, buseo, jikwi, basicPay, sudang) VALUES
+  (1027, '김영길', '801216-1898752', '2000-10-18', '서울', '019-8523-1478', '총무부', 
+   '과장', 2340000, 170000);
+INSERT INTO insa (num, name, ssn, ibsaDate, city, tel, buseo, jikwi, basicPay, sudang) VALUES
+  (1028, '이남신', '810101-1010101', '2001-09-07', '제주', '016-1818-4848', '인사부', 
+   '사원', 892000 , 110000);
+INSERT INTO insa (num, name, ssn, ibsaDate, city, tel, buseo, jikwi, basicPay, sudang) VALUES
+  (1029, '김말숙', '800301-2020202', '2000-09-08', '서울', '016-3535-3636', '총무부', 
+   '사원', 920000 , 124000);
+INSERT INTO insa (num, name, ssn, ibsaDate, city, tel, buseo, jikwi, basicPay, sudang) VALUES
+  (1030, '정정해', '790210-2101010', '1999-10-17', '부산', '019-6564-6752', '총무부', 
+   '과장', 2304000, 124000);
+INSERT INTO insa (num, name, ssn, ibsaDate, city, tel, buseo, jikwi, basicPay, sudang) VALUES
+  (1031, '지재환', '771115-1687988', '2001-01-21', '서울', '019-5552-7511', '기획부', 
+   '부장', 2450000, 160000);
+INSERT INTO insa (num, name, ssn, ibsaDate, city, tel, buseo, jikwi, basicPay, sudang) VALUES
+  (1032, '심심해', '810206-2222222', '2000-05-05', '전북', '016-8888-7474', '자재부', 
+   '사원', 880000 , 108000);
+INSERT INTO insa (num, name, ssn, ibsaDate, city, tel, buseo, jikwi, basicPay, sudang) VALUES
+  (1033, '김미나', '780505-2999999', '1998-06-07', '서울', '011-2444-4444', '영업부', 
+   '사원', 1020000, 104000);
+INSERT INTO insa (num, name, ssn, ibsaDate, city, tel, buseo, jikwi, basicPay, sudang) VALUES
+  (1034, '이정석', '820505-1325468', '2005-09-26', '경기', '011-3697-7412', '기획부', 
+   '사원', 1100000, 160000);
+INSERT INTO insa (num, name, ssn, ibsaDate, city, tel, buseo, jikwi, basicPay, sudang) VALUES
+  (1035, '정영희', '831010-2153252', '2002-05-16', '인천', NULL           , '개발부', 
+   '사원', 1050000, 140000);
+INSERT INTO insa (num, name, ssn, ibsaDate, city, tel, buseo, jikwi, basicPay, sudang) VALUES
+  (1036, '이재영', '701126-2852147', '2003-08-10', '서울', '011-9999-9999', '자재부', 
+   '사원', 960400 , 190000);
+INSERT INTO insa (num, name, ssn, ibsaDate, city, tel, buseo, jikwi, basicPay, sudang) VALUES
+  (1037, '최석규', '770129-1456987', '1998-10-15', '인천', '011-7777-7777', '홍보부', 
+   '과장', 2350000, 187000);
+INSERT INTO insa (num, name, ssn, ibsaDate, city, tel, buseo, jikwi, basicPay, sudang) VALUES
+  (1038, '손인수', '791009-2321456', '1999-11-15', '부산', '010-6542-7412', '영업부', 
+   '대리', 2000000, 150000);
+INSERT INTO insa (num, name, ssn, ibsaDate, city, tel, buseo, jikwi, basicPay, sudang) VALUES
+  (1039, '고순정', '800504-2000032', '2003-12-28', '경기', '010-2587-7895', '영업부', 
+   '대리', 2010000, 160000);
+INSERT INTO insa (num, name, ssn, ibsaDate, city, tel, buseo, jikwi, basicPay, sudang) VALUES
+  (1040, '박세열', '790509-1635214', '2000-09-10', '경북', '016-4444-7777', '인사부', 
+   '대리', 2100000, 130000);
+INSERT INTO insa (num, name, ssn, ibsaDate, city, tel, buseo, jikwi, basicPay, sudang) VALUES
+  (1041, '문길수', '721217-1951357', '2001-12-10', '충남', '016-4444-5555', '자재부', 
+   '과장', 2300000, 150000);
+INSERT INTO insa (num, name, ssn, ibsaDate, city, tel, buseo, jikwi, basicPay, sudang) VALUES
+  (1042, '채정희', '810709-2000054', '2003-10-17', '경기', '011-5125-5511', '개발부', 
+   '사원', 1020000, 200000);
+INSERT INTO insa (num, name, ssn, ibsaDate, city, tel, buseo, jikwi, basicPay, sudang) VALUES
+  (1043, '양미옥', '830504-2471523', '2003-09-24', '서울', '016-8548-6547', '영업부', 
+   '사원', 1100000, 210000);
+INSERT INTO insa (num, name, ssn, ibsaDate, city, tel, buseo, jikwi, basicPay, sudang) VALUES
+  (1044, '지수환', '820305-1475286', '2004-01-21', '서울', '011-5555-7548', '영업부', 
+   '사원', 1060000, 220000);
+INSERT INTO insa (num, name, ssn, ibsaDate, city, tel, buseo, jikwi, basicPay, sudang) VALUES
+  (1045, '홍원신', '690906-1985214', '2003-03-16', '전북', '011-7777-7777', '영업부', 
+   '사원', 960000 , 152000);			
+INSERT INTO insa (num, name, ssn, ibsaDate, city, tel, buseo, jikwi, basicPay, sudang) VALUES
+  (1046, '허경운', '760105-1458752', '1999-05-04', '경남', '017-3333-3333', '총무부', 
+   '부장', 2650000, 150000);
+INSERT INTO insa (num, name, ssn, ibsaDate, city, tel, buseo, jikwi, basicPay, sudang) VALUES
+  (1047, '산마루', '780505-1234567', '2001-07-15', '서울', '018-0505-0505', '영업부', 
+   '대리', 2100000, 112000);
+INSERT INTO insa (num, name, ssn, ibsaDate, city, tel, buseo, jikwi, basicPay, sudang) VALUES
+  (1048, '이기상', '790604-1415141', '2001-06-07', '전남', NULL           , '개발부', 
+   '대리', 2050000, 106000);
+INSERT INTO insa (num, name, ssn, ibsaDate, city, tel, buseo, jikwi, basicPay, sudang) VALUES
+  (1049, '이미성', '830908-2456548', '2000-04-07', '인천', '010-6654-8854', '개발부', 
+   '사원', 1300000, 130000);
+INSERT INTO insa (num, name, ssn, ibsaDate, city, tel, buseo, jikwi, basicPay, sudang) VALUES
+  (1050, '이미인', '810403-2828287', '2003-06-07', '경기', '011-8585-5252', '홍보부', 
+   '대리', 1950000, 103000);
+INSERT INTO insa (num, name, ssn, ibsaDate, city, tel, buseo, jikwi, basicPay, sudang) VALUES
+  (1051, '권영미', '790303-2155554', '2000-06-04', '서울', '011-5555-7548', '영업부', 
+   '과장', 2260000, 104000);
+INSERT INTO insa (num, name, ssn, ibsaDate, city, tel, buseo, jikwi, basicPay, sudang) VALUES
+  (1052, '권옥경', '820406-2000456', '2000-10-10', '경기', '010-3644-5577', '기획부', 
+   '사원', 1020000, 105000);
+INSERT INTO insa (num, name, ssn, ibsaDate, city, tel, buseo, jikwi, basicPay, sudang) VALUES
+  (1053, '김싱식', '800715-1313131', '1999-12-12', '전북', '011-7585-7474', '자재부', 
+   '사원', 960000 , 108000);
+INSERT INTO insa (num, name, ssn, ibsaDate, city, tel, buseo, jikwi, basicPay, sudang) VALUES
+  (1054, '정상호', '810705-1212141', '1999-10-16', '강원', '016-1919-4242', '홍보부', 
+   '사원', 980000 , 114000);
+INSERT INTO insa (num, name, ssn, ibsaDate, city, tel, buseo, jikwi, basicPay, sudang) VALUES
+  (1055, '정한나', '820506-2425153', '2004-06-07', '서울', '016-2424-4242', '영업부', 
+   '사원', 1000000, 104000);
+INSERT INTO insa (num, name, ssn, ibsaDate, city, tel, buseo, jikwi, basicPay, sudang) VALUES
+  (1056, '전용재', '800605-1456987', '2004-08-13', '인천', '010-7549-8654', '영업부', 
+   '대리', 1950000, 200000);
+INSERT INTO insa (num, name, ssn, ibsaDate, city, tel, buseo, jikwi, basicPay, sudang) VALUES
+  (1057, '이미경', '780406-2003214', '1998-02-11', '경기', '016-6542-7546', '자재부', 
+   '부장', 2520000, 160000);
+INSERT INTO insa (num, name, ssn, ibsaDate, city, tel, buseo, jikwi, basicPay, sudang) VALUES
+  (1058, '김신제', '800709-1321456', '2003-08-08', '인천', '010-2415-5444', '기획부', 
+   '대리', 1950000, 180000);
+INSERT INTO insa (num, name, ssn, ibsaDate, city, tel, buseo, jikwi, basicPay, sudang) VALUES
+  (1059, '임수봉', '810809-2121244', '2001-10-10', '서울', '011-4151-4154', '개발부', 
+   '사원', 890000 , 102000);
+INSERT INTO insa (num, name, ssn, ibsaDate, city, tel, buseo, jikwi, basicPay, sudang) VALUES
+  (1060, '김신애', '810809-2111111', '2001-10-10', '서울', '011-4151-4444', '개발부', 
+   '사원', 900000 , 102000);
+
+COMMIT;

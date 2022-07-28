@@ -1,0 +1,11 @@
+1. application.properties 설정
+- 서버 포트 변경
+server.port=8087
+- 오라클 드라이버 설정(고정. 복붙하면 된다)
+spring.datasource.driverClassName=oracle.jdbc.driver.OracleDriver
+- 오라클 서버 주소(고정. 복붙)
+spring.datasource.url=jdbc:oracle:thin:@localhost:1521:xe
+- 사용자 아이디
+spring.datasource.username=spring
+- 비밀번호
+spring.datasource.password=1111
