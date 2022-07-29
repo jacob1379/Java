@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern> %d{HH:mm:ss.SSS} %highlight(%-5level) %magenta(%-4relative) --- [ %thread{10} ] %cyan(%logger{40}) : %msg%n </pattern>
+		</encoder>
+	</appender>
+	<!-- 
+		작업 결과를 찍을 때 System.out.println()을 사용하면 안된다.
+		로깅 레벨 : error > warn > info > debug > trace  / trace가 가장 구체적
+		동작을 찍어보는 것
+	 -->
+	 
+	<!--  내가 만든 클래스에 대한 로깅 설정 -->
+	<logger name="com.icia" level="info" />
+	
+	<!--  3rd party 로깅 설정 -->
+	<logger name="org.springframework" level="info" />
+	
+	<!-- url mapping 출력 -->
+	<logger name="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping" level="trace" />
+	
+	<!--  log4jdbc 로깅 설정 (sql 콘솔에 나오게 설정?)-->
+	<logger name="jdbc.sqlonly" level="info"/>
+	<logger name="jdbc.connection" level="warn"/>
+	<logger name="jdbc.resultsettable" level="info"/>
+	<logger name="jdbc.audit" level="warn"/>
+	<logger name="jdbc.sqltiming" level="warn"/>
+	<logger name="jdbc.resultset" level="warn"/>
+	<root level="warn">
+		<appender-ref ref="console" />
+	</root>
+</configuration>

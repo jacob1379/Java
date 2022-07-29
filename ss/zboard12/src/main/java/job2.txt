@@ -1,0 +1,25 @@
+1. 엔티티 생성
+- 글 번호, 제목, 내용, 비밀번호, nickname, 작성시간, 조회수
+
+2. 작업 설계
+
+job 1 (list)
+url: get /board/all	입력: X	출력: 200/List<board> 409/
+	service.list(); 글 전체 읽기 (content, password 제외)
+job 2 (read)
+url: get /board/read 입력: bno 출력: 200/board , 409/MessageResponse
+	service.read(); 글 읽기, 조회수 증가
+job 3 (write)
+url: post /board/new 입력: WriteDto	출력: 200/board
+	service.write(); 글 쓰기
+job 4 (update)
+url: update /board/update 입력: UpdateDto 출력: 200/409 MessageResponse
+	service.update(); 비밀번호 읽고 - 비번 확인 - 변경
+job 5 (delete)
+url: delete /board/delete 입력: DeleteDto 출력: 200/409 MessageResponse
+	service.delete(); 비밀번호 읽고 - 비번 확인 - 변경
+
+
+
+
+// 상태코드와 출력 데이터

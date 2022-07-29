@@ -1,0 +1,53 @@
+1. 익명 게시판 엔티티
+- 글 번호, 제목, 내용, 비밀번호, nickname, 작성시간, 조회수 
+
+2. 작업 설계
+### BoardController ### //서블릿 작업부터
+-job1 : list
+	url- get /board/all, 입력- X, 출력- 200(List<Board>)
+	service.list() : dao에서 글 전체(content, password)를 읽어와 출력
+	
+-job2 : read
+	url- get /board/read, 입력- bno, 출력- 200(Board), 409(MessageResponse) 
+	// MessageResponse라는 클래스에 String을 담아서 내보낸다. (보드와 동일하게 json형식을 맞추려고)
+	service.read() : 글 읽기, 조회수를 증가
+
+-job3 : write 
+	url- post /board/new, 입력- WriteDto, 출력- 200(Board)
+	service.write() : 글 쓰기
+	
+-job4 : update
+	url- put /board/update, 입력- UpdateDto, 출력- 200,409(MessageResponse)
+	service.update() : 비밀번호 읽기-> 비밀번호 확인 -> 변경
+	
+-job5 : delete
+	url- delete /board/delete, 입력- DeleteDto, 출력- 200,409(MessageResponse)
+	service.delete() : 비밀번호 읽기-> 비밀번호 확인 -> 삭제
+	
+3. facade 패턴
+- 표준(facade)이 있고 구현체가 있다.
+- slf4j 표준이 있고 logback, log4j2 구현체가 있다 -> 사용법, 설정 등이 일치
+- logback을 이용해 로깅(암기)
+
+4. DataSource
+- Connection : DB와 연결하는 객체로 매우 비쌈 (반드시 외우시오)
+	미리 만들어놓고 빌려서 사용하고 반납(Pool)
+	연결은 Connection Pool을 이용 - apache DBCP, Hikari CP....
+- DataSource는 커넥션 풀과 연결하는 연결 객체(Connection + 양념)
+
+5. 스프링 빈 생성
+- 스프링은 @Component가 지정된 클래스의 객체를 생성해 관리한다.
+- 스프링은 어느 경로에서 @Component를 찿느냐?(Component Scan - 외워요)
+	프로젝트 만들 때 지정한 패키지(com.example.demo)의 하위에서만 찾는다.
+	즉 com.test.demo.BoardService는 스프링의 관리 대상이 아니다.
+	
+6. CRUD
+- bunho, irum, tel로 구성된 학생 테이블이 있다고 하자
+- 학생 테이블의 모든 컬럼을 insert하는 경우
+	insert into 학생 values(1, '홍길도', '1111');
+- 학생 테이블의 일부 컬럼만 insert하는 경우
+	insert into 학생(irum, tel) values('전우치', '2222');
+- update
+	update 학생 set irum='고길동', tel='3333' where bunho=1;
+- delete
+	delete from 학생 where bunho=1;
